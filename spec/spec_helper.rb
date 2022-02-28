@@ -13,3 +13,5 @@ require "cable_ready/testing/rspec"
 ActionCable.server.config.cable = { "adapter" => "test" }
 ActionCable.server.config.logger =
   ActiveSupport::TaggedLogging.new ActiveSupport::Logger.new(StringIO.new)
+
+ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: ":memory:")

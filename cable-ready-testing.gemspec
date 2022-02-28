@@ -22,8 +22,9 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.4.0'
 
   spec.add_dependency 'actioncable', '>= 5.0'
-  spec.add_dependency 'cable_ready', '>= 4.0'
+  spec.add_dependency 'cable_ready', '>= 5.0.0.pre8'
 
   spec.add_development_dependency 'rspec-rails', '~> 3.5'
   spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'sqlite3'
 end

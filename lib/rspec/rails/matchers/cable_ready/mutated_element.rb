@@ -37,7 +37,7 @@ module RSpec
               @message_data = mutated_element_options(options)
 
               if @message_data.present?
-                @message_data.except('selector') == @data
+                @message_data.except('selector', 'operation') == @data
               else
                 @element_not_found = true
                 false
@@ -63,7 +63,7 @@ module RSpec
             elsif @element_not_found
               "#{base_failure_message} but message for given element was not found"
             else
-              "#{base_failure_message} with #{@data} but mutated element with #{@message_data.except('selector')}"
+              "#{base_failure_message} with #{@data} but mutated element with #{@message_data.except('selector', 'operation')}"
             end
           end
 
@@ -72,7 +72,7 @@ module RSpec
           def mutation_options
             return unless broadcasted_message
 
-            broadcasted_message.dig('operations', @action)
+            broadcasted_message['operations'].select {|op| op['operation'] == @action }.presence
           end
 
           def broadcasted_message
